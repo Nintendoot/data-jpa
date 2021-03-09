@@ -1,0 +1,52 @@
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "name": "oleg12",
+  "firstName": "gjdrgdf",
+  "lastName": "last e3434rfe3434ffrrfrname 1",
+  "email": "rrferf@gmail.com",
+  "password": "56tgcg",
+  "phone": "+375(29)338-73-30",
+  "userStatus": "ADMIN"
+}
+
+###
+POST http://localhost:8080/user/auth
+Content-Type: application/json
+
+{
+  "name": "oleg12",
+  "password": "56tgcg"
+
+}
+###
+GET http://localhost:8080/user/all
+Key: 72f3536c-f53d-42fc-936e-a4d89902139d
+###
+GET http://localhost:8080/pet/all
+Key: 9520ec5d-5d52-4dac-a859-8eceea5b1742
+###
+
+###
+DELETE http://localhost:8080/pet/2
+Content-Type: application/json
+
+###
+POST http://localhost:8080/store/order
+Key: 72f3536c-f53d-42fc-936e-a4d89902139d
+
+{
+  "id": 1,
+  "petId": 1,
+  "quantity": 2,
+  "shipDate": "2021-03-02T05:57:09.472Z",
+  "status": "PLACED",
+  "complete": true
+}
+###
+GET http://localhost:8080/store/all
+Key:72f3536c-f53d-42fc-936e-a4d89902139d
+###
+GET http://localhost:8080/store/order/2
+Content-Type: application/json
