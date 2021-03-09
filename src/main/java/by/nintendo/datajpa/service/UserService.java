@@ -2,9 +2,7 @@ package by.nintendo.datajpa.service;
 
 import by.nintendo.datajpa.exception.NoSuchUserException;
 import by.nintendo.datajpa.exception.UserAlreadyExistsException;
-import by.nintendo.datajpa.model.Key;
 import by.nintendo.datajpa.model.User;
-import by.nintendo.datajpa.storage.KeyRepository;
 import by.nintendo.datajpa.storage.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
