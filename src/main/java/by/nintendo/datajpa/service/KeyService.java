@@ -1,6 +1,7 @@
 package by.nintendo.datajpa.service;
 
 import by.nintendo.datajpa.model.Key;
+import by.nintendo.datajpa.model.User;
 import by.nintendo.datajpa.model.UserStatus;
 import by.nintendo.datajpa.storage.KeyRepository;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,10 @@ public class KeyService {
             return UserStatus.QUEST;
         }
 
+    }
+
+    public void saveKey(String name, User user){
+        keyRepository.save(new Key(name,user));
     }
 
 

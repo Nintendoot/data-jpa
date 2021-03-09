@@ -15,14 +15,13 @@ import java.util.UUID;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
-    private final KeyRepository keyRepository;
+    private final KeyService keyService;
 
     @Autowired
-    public UserService(UserRepository userRepository, KeyRepository keyRepository) {
+    public UserService(UserRepository userRepository, KeyService keyService) {
 
         this.userRepository = userRepository;
-        this.keyRepository = keyRepository;
+        this.keyService = keyService;
     }
 
     public User getUserByName(String name) {
@@ -67,16 +66,16 @@ public class UserService {
 
     public String auth(User user) {
         User us = getUserByName(user.getName());
-        if(us!=null){
+        if (us != null) {
             if (us.equals(user)) {
                 UUID key = UUID.randomUUID();
                 String ui = key.toString();
-                keyRepository.save(new Key(ui, getUserByName(user.getName())));
+                keyService.saveKey(ui, us);
                 return ui;
             } else {
                 return null;
             }
-        }else{
+        } else {
             throw new NoSuchUserException("user not found");
         }
 
