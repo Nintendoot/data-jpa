@@ -16,25 +16,27 @@ public class WebConfiguration implements WebMvcConfigurer {
         this.authorithationInterceptor = authorithationInterceptor;
     }
 
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(adminInterceptor).
-                addPathPatterns("/user/all").
-                addPathPatterns("/user/{name}").
-                addPathPatterns("/store/all").
-                addPathPatterns("/store/order/{id}").
-                addPathPatterns("/store/order/inventory").
-                addPathPatterns("/pet").
-                excludePathPatterns("/pet/all").
-                excludePathPatterns("/pet/findByStatus").
-                addPathPatterns("/pet/{id}").
-                excludePathPatterns("/user/auth");
+//        registry.addInterceptor(adminInterceptor).
+//                addPathPatterns("/user/all").
+//                addPathPatterns("/user/{name}").
+//                addPathPatterns("/store/all").
+//                addPathPatterns("/store/order/{id}").
+//                addPathPatterns("/store/order/inventory").
+//                addPathPatterns("/pet").
+//                excludePathPatterns("/pet/all").
+//                excludePathPatterns("/pet/findByStatus").
+//                addPathPatterns("/pet/{id}").
+//                excludePathPatterns("/user/auth");
+//
+//        registry.addInterceptor(authorithationInterceptor).
+//                addPathPatterns("/pet/all").
+//                addPathPatterns("/pet/findByStatus").
+//                addPathPatterns("/store/order");
 
-        registry.addInterceptor(authorithationInterceptor).
-                addPathPatterns("/pet/all").
-                addPathPatterns("/pet/findByStatus").
-                addPathPatterns("/store/order");
 
     }
 

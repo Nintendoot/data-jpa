@@ -32,11 +32,11 @@ public class User {
     @Email
     private String email;
     @NotBlank
-    @Size(min = 6)
+    @Size(min = 5)
     private String password;
     private String phone;
     @Enumerated(value = EnumType.STRING)
-    private UserStatus userStatus;
+    private Role role;
 
     @Override
     public boolean equals(Object o) {

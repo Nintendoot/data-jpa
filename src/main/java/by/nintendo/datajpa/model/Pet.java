@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
@@ -15,11 +18,13 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Category category;
+    @NotNull
+    @Size(min = 4)
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Tag> tags;
     @Enumerated(value = EnumType.STRING)
     private PetStatus status;

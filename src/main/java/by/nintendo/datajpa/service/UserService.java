@@ -2,7 +2,11 @@ package by.nintendo.datajpa.service;
 
 import by.nintendo.datajpa.exception.NoSuchUserException;
 import by.nintendo.datajpa.exception.UserAlreadyExistsException;
+import by.nintendo.datajpa.exception.WrongPasswordException;
+import by.nintendo.datajpa.model.Key;
+import by.nintendo.datajpa.model.Role;
 import by.nintendo.datajpa.model.User;
+import by.nintendo.datajpa.storage.KeyRepository;
 import by.nintendo.datajpa.storage.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +17,13 @@ import java.util.UUID;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final KeyService keyService;
+    private final KeyRepository keyRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, KeyService keyService) {
+    public UserService(UserRepository userRepository, KeyRepository keyRepository) {
 
         this.userRepository = userRepository;
-        this.keyService = keyService;
+        this.keyRepository = keyRepository;
     }
 
     public User getUserByName(String name) {
@@ -33,7 +37,11 @@ public class UserService {
     public void deleateUser(String name) {
         User user = userRepository.findUserByName(name);
         if (user != null) {
-            userRepository.delete(user);
+            if (keyRepository.findKeyByUser(user) != null) {
+                keyRepository.delete(keyRepository.findKeyByUser(user));
+            } else {
+                userRepository.delete(user);
+            }
         } else {
             throw new NoSuchUserException("This user was not found.");
         }
@@ -56,7 +64,13 @@ public class UserService {
 
     public void createUser(User user) {
         if (!checkUserInMemory(user)) {
-            userRepository.save(user);
+            if (user.getName().equals("admin") && user.getPassword().equals("admin")) {
+                user.setRole(Role.ADMIN);
+                userRepository.save(user);
+            } else {
+                user.setRole(Role.USER);
+                userRepository.save(user);
+            }
         } else {
             throw new UserAlreadyExistsException("User already exists.");
         }
@@ -66,17 +80,20 @@ public class UserService {
         User us = getUserByName(user.getName());
         if (us != null) {
             if (us.equals(user)) {
-                UUID key = UUID.randomUUID();
-                String ui = key.toString();
-                keyService.saveKey(ui, us);
-                return ui;
+                if (keyRepository.findKeyByUser(us) != null) {
+                    return keyRepository.findKeyByUser(us).getName();
+                } else {
+                    UUID key = UUID.randomUUID();
+                    String ui = key.toString();
+                    keyRepository.save(new Key(ui, us));
+                    return ui;
+                }
             } else {
-                return null;
+               throw new WrongPasswordException("Wrong password!");
             }
         } else {
             throw new NoSuchUserException("user not found");
         }
-
     }
 
 

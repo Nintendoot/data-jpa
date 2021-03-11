@@ -61,4 +61,9 @@ public class ExceptionResource extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(e.getMessage(),HttpStatus.FOUND);
     }
 
+    @ExceptionHandler(WrongPasswordException.class)
+    public ResponseEntity<Object> ex(WrongPasswordException e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.FOUND);
+    }
+
 }

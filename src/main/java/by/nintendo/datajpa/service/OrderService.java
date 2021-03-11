@@ -19,6 +19,7 @@ import java.util.Optional;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final PetRepository petRepository;
 
     public OrderService(OrderRepository orderRepository, PetRepository petRepository) {
         this.orderRepository = orderRepository;
@@ -26,7 +27,7 @@ public class OrderService {
         this.petRepository = petRepository;
     }
 
-    private final PetRepository petRepository;
+
 
 
     public void createOrder(Order order) {

@@ -2,7 +2,7 @@ package by.nintendo.datajpa.service;
 
 import by.nintendo.datajpa.model.Key;
 import by.nintendo.datajpa.model.User;
-import by.nintendo.datajpa.model.UserStatus;
+import by.nintendo.datajpa.model.Role;
 import by.nintendo.datajpa.storage.KeyRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +14,16 @@ public class KeyService {
         this.keyRepository = keyRepository;
     }
 
-    public UserStatus validKey(String key) {
+    public Role validKey(String key) {
         Key key1 = keyRepository.findKeyByName(key);
         if (key1 != null) {
-            if (key1.getUser().getUserStatus().equals(UserStatus.ADMIN)) {
-                return UserStatus.ADMIN;
+            if (key1.getUser().getRole().equals(Role.ADMIN)) {
+                return Role.ADMIN;
             } else {
-                return UserStatus.USER;
+                return Role.USER;
             }
         } else {
-            return UserStatus.QUEST;
+            return Role.QUEST;
         }
 
     }
@@ -31,6 +31,10 @@ public class KeyService {
     public void saveKey(String name, User user){
         keyRepository.save(new Key(name,user));
     }
+
+
+
+
 
 
 }

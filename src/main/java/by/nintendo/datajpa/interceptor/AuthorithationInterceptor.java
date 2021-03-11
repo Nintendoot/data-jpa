@@ -1,6 +1,6 @@
 package by.nintendo.datajpa.interceptor;
 
-import by.nintendo.datajpa.model.UserStatus;
+import by.nintendo.datajpa.model.Role;
 import by.nintendo.datajpa.service.KeyService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,8 +20,8 @@ public class AuthorithationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String d = request.getHeader("Key");
-        UserStatus status = keyService.validKey(d);
-        if (status.equals(UserStatus.USER)) {
+        Role status = keyService.validKey(d);
+        if (status.equals(Role.USER)) {
             return true;
         } else {
             return false;

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,13 +24,13 @@ public class PetResource {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createPet(@RequestBody Pet pet) {
+    public ResponseEntity<Object> createPet( @Valid @RequestBody Pet pet) {
         petService.createPet(pet);
         return new ResponseEntity<>("Pet create", HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Object> updatepet(@RequestBody Pet pet) {
+    public ResponseEntity<Object> updatepet(@Valid @RequestBody Pet pet) {
         petService.updatePet(pet);
         return new ResponseEntity<>("Pet update.", HttpStatus.OK);
     }
@@ -49,7 +50,7 @@ public class PetResource {
         return new ResponseEntity<>(petService.getById(id), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity<?> updateByIdForm(@PathVariable(name = "id") long id, @RequestBody Pet pet) {
         petService.updateByForm(id, pet);
         return new ResponseEntity<>("Pet update", HttpStatus.OK);
@@ -62,7 +63,7 @@ public class PetResource {
     }
 
     @GetMapping(path = "/findByStatus")
-    public ResponseEntity<?> statusPets(@RequestBody Pet pet) {
+    public ResponseEntity<?> statusPets(@Valid @RequestBody Pet pet) {
         List<Pet> patStatus = petService.getPetsByStatus(pet.getStatus());
         if (patStatus.size() != 0) {
             return new ResponseEntity<>(patStatus, HttpStatus.OK);

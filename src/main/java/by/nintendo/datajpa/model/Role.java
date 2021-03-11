@@ -1,6 +1,6 @@
 package by.nintendo.datajpa.model;
 
-public enum UserStatus {
+public enum Role {
     ADMIN,
     USER,
     QUEST
