@@ -5,7 +5,7 @@ import by.nintendo.datajpa.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KeyRepository extends JpaRepository<Key, Long> {
-    public Key findKeyByName(String name);
+    Key findKeyByName(String name);
 
-    public Key findKeyByUser(User user);
+    Key findKeyByUser(User user);
 }
