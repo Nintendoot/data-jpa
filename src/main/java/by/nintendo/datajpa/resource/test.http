@@ -2,11 +2,11 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-  "name": "adminz",
+  "name": "adminqe",
   "firstName": "gjdrgdf",
   "lastName": "last e3434rfe3434ffrrfrname 1",
   "email": "rrferf@gmail.com",
-  "password": "adminxc",
+  "password": "admin",
   "phone": "+375(29)338-73-30"
 }
 
@@ -15,15 +15,17 @@ POST http://localhost:8080/user/auth
 Content-Type: application/json
 
 {
-  "name": "adminz",
-  "password": "adminxc"
+  "name": "admin",
+  "password": "admin"
 
 }
 
 ###
-
-DELETE http://localhost:8080/user/adminz
-Content-Type: application/json
+GET http://localhost:8080/user/all
+X-Key:ef2e5331-83a8-4008-9d7c-c28c845142e9
+###
+DELETE http://localhost:8080/user/admin
+X-Key:4c778250-f53c-43b1-917a-8b1e6fafdcb3
 
 
 ###

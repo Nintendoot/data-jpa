@@ -27,7 +27,7 @@ public class WebConfiguration implements WebMvcConfigurer {
                 addPathPatterns("/store/order/{id}").
                 addPathPatterns("/store/order/inventory").
                 addPathPatterns("/pet").
-                excludePathPatterns("/pet/all").
+                //excludePathPatterns("/pet/all").
                 excludePathPatterns("/pet/findByStatus").
                 addPathPatterns("/pet/{id}").
                 excludePathPatterns("/user/auth");

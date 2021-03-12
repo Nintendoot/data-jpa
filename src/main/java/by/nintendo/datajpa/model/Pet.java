@@ -24,7 +24,7 @@ public class Pet {
     @NotNull
     @Size(min = 4)
     private String name;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.ALL})
     private List<Tag> tags;
     @Enumerated(value = EnumType.STRING)
     private PetStatus status;
