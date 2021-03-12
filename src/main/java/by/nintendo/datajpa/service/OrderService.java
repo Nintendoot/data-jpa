@@ -27,9 +27,6 @@ public class OrderService {
         this.petRepository = petRepository;
     }
 
-
-
-
     public void createOrder(Order order) {
         if (petRepository.existsById(order.getPetId())) {
             orderRepository.save(order);
@@ -48,7 +45,6 @@ public class OrderService {
         } else {
             throw new NoSuchOrderException("There is no such order.");
         }
-
     }
 
     public void deleateOrder(long id) {

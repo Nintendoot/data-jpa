@@ -18,12 +18,9 @@ public class AdminInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String d = request.getHeader("Key");
+        String d = request.getHeader("X-Key");
         Role status = keyService.validKey(d);
-        if (status.equals(Role.ADMIN)) {
-            return true;
-        } else {
-            return false;
-        }
+        return status.equals(Role.ADMIN);
     }
 }
+

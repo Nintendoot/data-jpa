@@ -89,7 +89,7 @@ public class UserService {
                     return ui;
                 }
             } else {
-               throw new WrongPasswordException("Wrong password!");
+                throw new WrongPasswordException("Wrong password!");
             }
         } else {
             throw new NoSuchUserException("user not found");
@@ -106,7 +106,6 @@ public class UserService {
             throw new NoSuchUserException("User not found.");
         }
     }
-
 
 }
 
