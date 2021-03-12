@@ -19,14 +19,14 @@ import java.util.Optional;
 public class PetService {
 
     private final PetRepository petRepository;
-    private final TagRepository tagRepository;
-    private final CategoryRepository categoryRepository;
+    private final TagService tagService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public PetService(PetRepository petRepository, TagRepository tagRepository, CategoryRepository categoryRepository) {
+    public PetService(PetRepository petRepository, TagService tagService, CategoryService categoryService) {
         this.petRepository = petRepository;
-        this.tagRepository = tagRepository;
-        this.categoryRepository = categoryRepository;
+        this.tagService = tagService;
+        this.categoryService = categoryService;
     }
 
     public Optional<Pet> getById(long id) {
@@ -46,16 +46,10 @@ public class PetService {
     }
 
     public void createPet(Pet pet) {
-        Category cate = categoryRepository.findCategoryByName(pet.getCategory().getName());
-        Category category = cate != null ? cate : pet.getCategory();
-        List<Tag> tags = new ArrayList<>();
-        for (Tag tag : pet.getTags()) {
-            Tag t = tagRepository.findTagByName(tag.getName());
-            Tag ta = t != null ? t : tag;
-            tags.add(ta);
-        }
-        pet.setTags(tags);
+        Category category =categoryService.createCategory(pet) ;
         pet.setCategory(category);
+        List<Tag> tags=tagService.createTag(pet.getTags());
+        pet.setTags(tags);
         petRepository.save(pet);
     }
 

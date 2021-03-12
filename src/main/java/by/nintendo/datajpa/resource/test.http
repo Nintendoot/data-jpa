@@ -35,12 +35,12 @@ Content-Type: application/json
 
 {
   "category": {
-    "name": "sdfdf"
+    "name": "12123"
   },
   "name": "Odfdf",
   "tags": [
     {
-      "name": "string1"
+      "name": "string3"
     },
     {
       "name": "string2"
