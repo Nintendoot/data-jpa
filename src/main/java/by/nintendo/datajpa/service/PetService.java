@@ -46,9 +46,9 @@ public class PetService {
     }
 
     public void createPet(Pet pet) {
-        Category category =categoryService.createCategory(pet) ;
+        Category category = categoryService.createCategory(pet);
         pet.setCategory(category);
-        List<Tag> tags=tagService.createTag(pet.getTags());
+        List<Tag> tags = tagService.createTag(pet.getTags());
         pet.setTags(tags);
         petRepository.save(pet);
     }
@@ -78,5 +78,14 @@ public class PetService {
 
     public List<Pet> getPetsByStatus(PetStatus status) {
         return petRepository.findAllByStatus(status);
+    }
+
+    public boolean checkStatusForOrder(Pet pet) {
+        if (pet.getStatus().equals(PetStatus.AVAILABLE)) {
+            pet.setStatus(PetStatus.SOLD);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

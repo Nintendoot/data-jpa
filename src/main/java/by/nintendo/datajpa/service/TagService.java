@@ -15,12 +15,12 @@ public class TagService {
     @Autowired
     private TagRepository tagRepository;
 
-public List<Tag> createTag(List<Tag> tags){
-    List<Tag> tagsList = new ArrayList<>();
-    for (Tag tag : tags) {
-        Tag t = tagRepository.findTagByName(tag.getName())!=null? tagRepository.findTagByName(tag.getName()) : tag;
-        tagsList.add(t);
+    public List<Tag> createTag(List<Tag> tags) {
+        List<Tag> tagsList = new ArrayList<>();
+        for (Tag tag : tags) {
+            Tag t = tagRepository.findTagByName(tag.getName()) != null ? tagRepository.findTagByName(tag.getName()) : tag;
+            tagsList.add(t);
+        }
+        return tagsList;
     }
-   return tagsList;
-}
 }

@@ -5,6 +5,7 @@ import by.nintendo.datajpa.model.Pet;
 
 import by.nintendo.datajpa.service.PetService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping(path = "/pet")
 public class PetResource {
@@ -25,8 +27,10 @@ public class PetResource {
 
     @PostMapping
     public ResponseEntity<Object> createPet( @Valid @RequestBody Pet pet) {
+        log.info("Pet"+pet.getName());
         petService.createPet(pet);
         return new ResponseEntity<>("Pet create", HttpStatus.CREATED);
+
     }
 
     @PutMapping

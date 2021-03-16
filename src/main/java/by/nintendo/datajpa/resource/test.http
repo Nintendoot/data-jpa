@@ -2,7 +2,7 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-  "name": "adminqe",
+  "name": "adminqe23",
   "firstName": "gjdrgdf",
   "lastName": "last e3434rfe3434ffrrfrname 1",
   "email": "rrferf@gmail.com",
@@ -46,7 +46,7 @@ Content-Type: application/json
       "name": "string2"
     }
   ],
-  "status": "SOLD"
+  "status": "AVAILABLE"
 }
 
 ###
@@ -56,6 +56,12 @@ Content-Type: application/json
 DELETE http://localhost:8080/pet/1
 Content-Type: application/json
 ###
+GET http://localhost:8080/pet/findByStatus
+Content-Type: application/json
+
+{
+  "status": "AVAILABLE"
+}
 
 ###
 GET http://localhost:8080/user/admin
@@ -63,13 +69,11 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/store/order
-Key: 72f3536c-f53d-42fc-936e-a4d89902139d
+Content-Type: application/json
 
 {
-  "id": 1,
-  "petId": 1,
+  "petId": 3,
   "quantity": 2,
-  "shipDate": "2021-03-02T05:57:09.472Z",
   "status": "PLACED",
   "complete": true
 }
@@ -78,4 +82,8 @@ GET http://localhost:8080/store/all
 Key:72f3536c-f53d-42fc-936e-a4d89902139d
 ###
 GET http://localhost:8080/store/order/2
+Content-Type: application/json
+###
+
+GET http://localhost:8080/store/inventory
 Content-Type: application/json

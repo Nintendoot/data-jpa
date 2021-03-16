@@ -21,8 +21,6 @@ public class Pet {
     @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Category category;
-    @NotNull
-    @Size(min = 4)
     private String name;
     @ManyToMany(cascade = {CascadeType.ALL})
     private List<Tag> tags;

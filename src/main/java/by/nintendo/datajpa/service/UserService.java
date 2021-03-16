@@ -8,12 +8,14 @@ import by.nintendo.datajpa.model.Role;
 import by.nintendo.datajpa.model.User;
 import by.nintendo.datajpa.storage.KeyRepository;
 import by.nintendo.datajpa.storage.UserRepository;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-
+@Slf4j
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -63,6 +65,7 @@ public class UserService {
     }
 
     public void createUser(User user) {
+
         if (!checkUserInMemory(user)) {
             if (user.getName().equals("admin") && user.getPassword().equals("admin")) {
                 user.setRole(Role.ADMIN);
@@ -74,6 +77,7 @@ public class UserService {
         } else {
             throw new UserAlreadyExistsException("User already exists.");
         }
+        log.info("User"+user);
     }
 
     public String auth(User user) {
