@@ -8,7 +8,6 @@ import by.nintendo.datajpa.model.Role;
 import by.nintendo.datajpa.model.User;
 import by.nintendo.datajpa.storage.KeyRepository;
 import by.nintendo.datajpa.storage.UserRepository;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

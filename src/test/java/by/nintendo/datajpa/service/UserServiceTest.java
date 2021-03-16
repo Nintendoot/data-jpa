@@ -9,10 +9,11 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-
 import static org.junit.jupiter.api.Assertions.*;
+
 @DataJpaTest
 class UserServiceTest {
+
  @Autowired
  UserRepository userRepository = Mockito.mock(UserRepository.class);
 
@@ -51,7 +52,7 @@ class UserServiceTest {
 
     @Test
     void updateUser() {
-     User user = new User(1, "hbibkb", "sdcdsc", "dcsd", "rrferf@gmail.com", "sdcsdc", "scscsc", Role.USER);
+     User user = new User(4, "hbibkb", "sdcdsc", "dcsd", "rrferf@gmail.com", "sdcsdc", "scscsc", Role.USER);
      userRepository.save(user);
      assertEquals(userRepository.findAll().get(0),user);
     }
